@@ -8,7 +8,6 @@ const FoodExplorer = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const loader = useRef(null);
-//   const scrollContainerRef = useRef(null);
 
   const visibleRange = 5;
   const [startIndex, setStartIndex] = useState(0);
@@ -36,6 +35,27 @@ const FoodExplorer = () => {
       console.error("Error fetching products:", err);
     }
   }, [page, searchTerm]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+
+    return () => {
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
+  }, [hasMore]);
 
   useEffect(() => {
     fetchProducts();
@@ -79,9 +99,9 @@ const FoodExplorer = () => {
   const bgGradient = getBgColor(centerCard?.nutrition_grades);
 
   return (
-    
-    <div className={`min-h-screen w-full bg-gradient-to-br ${bgGradient} text-gray-800`}>
-    <Navigation/>
+
+    <div className={`min-h-screen w-full bg-gradient-to-br from-amber-100 via-white to-rose-100 border border-gray-200 text-gray-800`}>
+      <Navigation />
       {/* Welcome Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div className="text-center mb-10">
@@ -101,18 +121,18 @@ const FoodExplorer = () => {
 
       {/* Explorer Section */}
       <section id="productList">
-      <div className="p-4">
-        <h1 className="text-2xl md:text-3xl font-medium italic mb-5"><span className="text-gray-900">Food Product</span>
-        <span className="text-blue-600"> Explorer</span></h1>
-        <div className="flex flex-wrap justify-center gap-4">
-          {products.map((product, idx) => (
-            <ProductCard key={`${product.code}-${idx}`} product={product} />
-          ))}
+        <div className="p-4">
+          <h1 className="text-2xl md:text-3xl font-medium italic mb-5"><span className="text-gray-900">Food Product</span>
+            <span className="text-blue-600"> Explorer</span></h1>
+          <div className="flex flex-wrap justify-center gap-4">
+            {products.map((product, idx) => (
+              <ProductCard key={`${product.code}-${idx}`} product={product} />
+            ))}
+          </div>
+          <div ref={loader} className="text-center p-6 text-gray-500">
+            {hasMore ? "Loading more..." : "No more products"}
+          </div>
         </div>
-        <div ref={loader} className="text-center p-6 text-gray-500">
-          {hasMore ? "Loading more..." : "No more products"}
-        </div>
-      </div>
       </section>
     </div>
   );

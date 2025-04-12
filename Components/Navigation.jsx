@@ -15,8 +15,11 @@ const Navigation = () => {
       const goToCategories = () => {
         navigate("/category/beverages"); 
       };
+      const gotosearch = () => {
+        navigate("/search")
+      }
   return (
-    <nav className="w-full bg-white shadow-md p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <nav className="sticky top-0 z-50 w-full bg-white shadow-md p-4 flex flex-col md:flex-row items-center justify-between gap-4">
       
       {/* Left side: Brand logo/text */}
       <div className="text-3xl font-bold text-blue-600 tracking-wide italic">
@@ -30,7 +33,7 @@ const Navigation = () => {
           <a onClick={scrollToProducts} className="hover:text-blue-500 transition">Products</a>
           <a onClick={goToCategories} className="hover:text-blue-500 transition">Catagories</a>
         </div>
-          <button  className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 mr-5">
+          <button onClick={gotosearch} className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 mr-5">
             Search
           </button>
         </div>

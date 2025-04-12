@@ -27,7 +27,7 @@ const Categories = () => {
   }, [category]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-amber-100 via-white to-rose-100 border border-gray-200">
       <Navigation />
       <div className="p-6">
         <h1 className="text-3xl font-semibold mb-6 capitalize text-center">

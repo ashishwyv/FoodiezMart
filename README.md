@@ -34,8 +34,12 @@ Barcode search is also supported using OpenFoodFacts’ barcode endpoint.
 ![Screenshot 2025-04-12 101631](https://github.com/user-attachments/assets/162c8c00-f7ea-41b9-9676-adae275dfab8)
 ->this is the search component with items being displayed.
   
-### 🗂️ Category Filter
-Products can be filtered by category (e.g., Beverages, Dairy, Snacks).
+### 🗂️ Infinite Scroll
+
+Products can be loaded infinite times until the end of products in the batch of 20.
+
+![Screenshot 2025-04-12 101337](https://github.com/user-attachments/assets/cdc208bc-1773-43e1-ab1f-5339cef0bfc1)
+
 
 Categories are fetched dynamically from the API.
 

@@ -62,42 +62,6 @@ const FoodExplorer = () => {
   }, [fetchProducts]);
 
 
-  const getCardScale = (index) => {
-    const middle = Math.floor(visibleRange / 2);
-    const diff = Math.abs(index - middle);
-    if (diff === 0) return "scale-[1.71] z-30 -mt-6";
-    if (diff === 1) return "scale-[1.35] z-20 -mt-12";
-    return "scale-100 z-10 -mt-16 opacity-80";
-  };
-
-  const scrollLeft = () => {
-    if (startIndex > 0) {
-      setStartIndex((prev) => prev - 1);
-    }
-  };
-
-  const scrollRight = () => {
-    if (startIndex + visibleRange < products.length) {
-      setStartIndex((prev) => prev + 1);
-    }
-  };
-
-  const visibleProducts = products.slice(startIndex, startIndex + visibleRange);
-  const centerCard = visibleProducts[Math.floor(visibleRange / 2)];
-
-  const getBgColor = (grade) => {
-    switch ((grade || "").toLowerCase()) {
-      case "a": return "from-green-100 via-white to-green-200";
-      case "b": return "from-lime-100 via-white to-lime-200";
-      case "c": return "from-yellow-100 via-white to-yellow-200";
-      case "d": return "from-orange-100 via-white to-orange-200";
-      case "e": return "from-rose-100 via-white to-rose-200";
-      default: return "from-gray-100 via-white to-gray-200";
-    }
-  };
-
-  const bgGradient = getBgColor(centerCard?.nutrition_grades);
-
   return (
 
     <div className={`min-h-screen w-full bg-gradient-to-br from-amber-100 via-white to-rose-100 border border-gray-200 text-gray-800`}>

@@ -89,3 +89,8 @@ Add user authentication for saving favorite items.
 
 Enhance accessibility and SEO for broader reach.
 
+⏱️ Time Taken
+
+🕒 Approximately 5 days
+
+Includes brainstorming, design, implementation, bug fixes, and polish.
